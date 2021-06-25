@@ -1,0 +1,7 @@
+spec:
+  name: stapafor
+  services:
+    - name: stapafor-service
+      git:
+        branch: main
+        repo_clone_url: https://github.com/b-nova-openhub/static-page-forwarder.git
