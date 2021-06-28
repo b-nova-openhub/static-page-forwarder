@@ -1,8 +1,11 @@
 package rest
 
 import (
+	"b-nova-openhub/stapafor/pkg/forward"
+	"b-nova-openhub/stapafor/pkg/resolver"
+	"b-nova-openhub/stapafor/src/github.com/gorilla/mux"
 	"encoding/json"
-	"github.com/gorilla/mux"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -12,21 +15,22 @@ func HandleRequests() {
 	router.HandleFunc("/page", getPage).Methods("GET")
 	router.HandleFunc("/pages", getPages).Methods("GET")
 	router.HandleFunc("/status", getStatus).Methods("GET")
-	router.HandleFunc("/forward", getGenerate).Methods("GET")
+	router.HandleFunc("/forward", getForward).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func getPage(w http.ResponseWriter, r *http.Request) {
 	v := r.URL.Query()
-	pages := gen.GeneratedPages
+	pages := forward.ForwardedPages
 	page := getPageById(v.Get("id"), pages)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&page)
 }
 
 func getPages(w http.ResponseWriter, r *http.Request) {
+	pages := forward.ForwardedPages
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(nil)
+	json.NewEncoder(w).Encode(pages)
 }
 
 func getStatus(w http.ResponseWriter, r *http.Request) {
@@ -34,9 +38,13 @@ func getStatus(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(nil)
 }
 
-func getGenerate(w http.ResponseWriter, r *http.Request) {
+func getForward(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Forward Request: %+v\n", r)
+	html := resolver.GetContentHtml("https://b-nova.com/sitemaps/sitemap.xml")
+	forwarded := forward.Forward(html)
+	fmt.Printf("Forward Response: %+v\n", forwarded)
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(nil)
+	json.NewEncoder(w).Encode(forwarded)
 }
 
 func getPageById(id string, pages []forward.StaticPage) *forward.StaticPage {

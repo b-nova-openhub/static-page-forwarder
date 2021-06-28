@@ -13,6 +13,36 @@ type StaticPage struct {
 	Body         string `json:"body"`
 }
 
-func Forward() {
+type Forwarding struct {
+	Success bool     `json:"success"`
+	Errors  []string `json:"errors"`
+}
 
+var ForwardedPages []StaticPage
+var Forwarded *Forwarding
+
+func Forward(contentPages []string) *Forwarding {
+	pages := make([]StaticPage, 0)
+
+	for _, cp := range contentPages {
+		var p StaticPage
+		p.Title = ""
+		p.Permalink = ""
+		p.Author = ""
+		p.Tags = ""
+		p.Categories = ""
+		p.PublishDate = ""
+		p.Description = ""
+		p.ShowComments = ""
+		p.IsPublished = ""
+		p.Body = cp
+		pages = append(pages, p)
+	}
+
+	ForwardedPages = pages
+
+	Forwarded = new(Forwarding)
+	Forwarded.Success = true
+	Forwarded.Errors = make([]string, 0)
+	return Forwarded
 }

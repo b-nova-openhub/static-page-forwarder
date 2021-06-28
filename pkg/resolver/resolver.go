@@ -1,4 +1,4 @@
-package pages
+package resolver
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func getContentHtml(url string) []string {
+func GetContentHtml(url string) []string {
 	content := make([]string, 0, 0)
 	contentUrls := getValidContentUrls(url)
 	for _, url := range contentUrls {
@@ -31,7 +31,7 @@ func getValidContentUrls(url string) []string {
 	content := make([]string, 0, 0)
 	urls := parseSitemap(url).URL
 	for _, url := range urls {
-		if strings.Contains("/content/", url.Loc) {
+		if strings.Contains(url.Loc, "/content/") {
 			content = append(content, url.Loc)
 		}
 	}
