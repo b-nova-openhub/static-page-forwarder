@@ -1,5 +1,7 @@
 package forward
 
+import "b-nova-openhub/stapafor/pkg/parser"
+
 type StaticPage struct {
 	Title        string `json:"title"`
 	Permalink    string `json:"permalink"`
@@ -37,6 +39,7 @@ func Forward(contentPages []string) *Forwarding {
 		p.IsPublished = ""
 		p.Body = cp
 		pages = append(pages, p)
+		parser.ParseByTag(cp, "og:title")
 	}
 
 	ForwardedPages = pages
