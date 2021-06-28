@@ -1,6 +1,8 @@
 package forward
 
-import "b-nova-openhub/stapafor/pkg/parser"
+import (
+	"b-nova-openhub/stapafor/pkg/tokenizer"
+)
 
 type StaticPage struct {
 	Title        string `json:"title"`
@@ -28,18 +30,17 @@ func Forward(contentPages []string) *Forwarding {
 
 	for _, cp := range contentPages {
 		var p StaticPage
-		p.Title = ""
-		p.Permalink = ""
+		p.Title = tokenizer.GetTokenByTag(cp, "title")
+		p.Permalink = tokenizer.GetTokenByTag(cp, "og:url")
 		p.Author = ""
 		p.Tags = ""
 		p.Categories = ""
 		p.PublishDate = ""
 		p.Description = ""
 		p.ShowComments = ""
-		p.IsPublished = ""
+		p.IsPublished = "true"
 		p.Body = cp
 		pages = append(pages, p)
-		parser.ParseByTag(cp, "og:title")
 	}
 
 	ForwardedPages = pages
