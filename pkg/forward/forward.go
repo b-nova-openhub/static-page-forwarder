@@ -50,6 +50,8 @@ func Forward(contentPages []string) *Forwarding {
 
 	ForwardedPages = pages
 
+	refactor()
+
 	Forwarded = new(Forwarding)
 	Forwarded.Success = true
 	Forwarded.Errors = make([]string, 0)

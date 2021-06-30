@@ -1,7 +1,7 @@
 package config
 
 import (
-	"b-nova-openhub/stapagen/pkg/util"
+	"b-nova-openhub/stapafor/pkg/util"
 	"flag"
 	"fmt"
 )
