@@ -1,10 +1,10 @@
-package url_converter
+package converter
 
 import (
+	"b-nova-openhub/stapafor/pkg/util"
 	"encoding/xml"
 	"io/ioutil"
 	"net/http"
-	"static-page-exposer/pkg/util"
 	"strings"
 )
 

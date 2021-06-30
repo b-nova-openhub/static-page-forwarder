@@ -3,20 +3,18 @@ package rest
 import (
 	"b-nova-openhub/stapafor/pkg/forward"
 	"b-nova-openhub/stapafor/pkg/resolver"
-	"b-nova-openhub/stapafor/src/github.com/gorilla/mux"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 )
 
 func HandleRequests() {
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/page", getPage).Methods("GET")
-	router.HandleFunc("/pages", getPages).Methods("GET")
-	router.HandleFunc("/status", getStatus).Methods("GET")
-	router.HandleFunc("/forward", getForward).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	//router := mux.NewRouter().StrictSlash(true)
+	//router.HandleFunc("/page", getPage).Methods("GET")
+	//router.HandleFunc("/pages", getPages).Methods("GET")
+	//router.HandleFunc("/status", getStatus).Methods("GET")
+	//router.HandleFunc("/forward", getForward).Methods("GET")
+	//log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func getPage(w http.ResponseWriter, r *http.Request) {

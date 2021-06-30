@@ -1,4 +1,4 @@
-all: test vet fmt mod build run
+all: mod test vet fmt build run
 
 test:
 	go test ./...

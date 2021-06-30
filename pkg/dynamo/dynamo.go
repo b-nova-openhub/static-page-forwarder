@@ -1,12 +1,12 @@
-package dynamoDb
+package dynamo
 
 import (
+	"b-nova-openhub/stapafor/pkg/util"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"log"
-	"static-page-exposer/pkg/util"
 )
 
 type Item struct {

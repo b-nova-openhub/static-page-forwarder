@@ -1,11 +1,11 @@
 package html
 
 import (
+	"b-nova-openhub/stapafor/pkg/util"
 	"golang.org/x/net/html"
 	"io"
 	"log"
 	"net/http"
-	"static-page-exposer/pkg/util"
 )
 
 //type StaticPage struct {

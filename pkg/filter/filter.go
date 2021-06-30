@@ -1,9 +1,9 @@
-package url_filter_predicate
+package filter
 
 import (
+	"b-nova-openhub/stapafor/pkg/util"
 	"github.com/jucardi/go-streams/streams"
 	"path"
-	"static-page-exposer/pkg/util"
 	"strings"
 	"unicode/utf8"
 )
