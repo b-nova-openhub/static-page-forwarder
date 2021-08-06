@@ -30,6 +30,10 @@ func getPage(w http.ResponseWriter, r *http.Request) {
 
 func getPages(w http.ResponseWriter, r *http.Request) {
 	pages := forward.ForwardedPages
+	if len(pages) == 0 {
+		forward.Forward(resolver.GetContentHtml(viper.GetString("sitemap")))
+		pages = forward.ForwardedPages
+	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(pages)
 }
