@@ -2,7 +2,7 @@
 
 echo "$(<LICENSE)"
 
-SITEMAP=localhost:8000/sitemap
-PORT=8080
+SITEMAP=http://localhost:8001/sitemap
+PORT=8002
 
 ./bin/stapafor serve --sitemap=$SITEMAP --port=$PORT
