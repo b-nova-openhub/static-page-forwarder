@@ -1,17 +1,16 @@
-![stapafor-header](https://github.com/b-nova-openhub/jams-vanilla-content/raw/main/gostapafor-header.png)
+![stapafor-header](https://docs.google.com/drawings/d/e/2PACX-1vTqQXFxIQJLKSRFxkD_O3GqJ_ygS4C0Vs-W6XOzJOGMpk4RtQX09amzXNc3JIsQxMLAQnhlwO02vpgR/pub?w=962&h=330)
 
 # gostapafor (go-static-page-forwarder)
 
 <!--- These are examples. See https://shields.io for others or to customize this set of shields. You might want to include dependencies, project status and licence info here --->
 ![GoDoc](https://godoc.org/github.com/go-git/go-git/v5?status.svg)
-![GitHub repo size](https://img.shields.io/github/repo-size/b-nova-openhub/solr-page-exposer)
-![GitHub contributors](https://img.shields.io/github/contributors/b-nova-openhub/solr-page-exposer)
-![GitHub stars](https://img.shields.io/github/stars/b-nova-openhub/solr-page-exposer?style=social)
-![GitHub forks](https://img.shields.io/github/forks/b-nova-openhub/solr-page-exposer?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/b-nova-openhub/static-page-forwarder)
+![GitHub contributors](https://img.shields.io/github/contributors/b-nova-openhub/static-page-forwarder)
+![GitHub stars](https://img.shields.io/github/stars/b-nova-openhub/static-page-forwarder?style=social)
+![GitHub forks](https://img.shields.io/github/forks/b-nova-openhub/static-page-forwarder?style=social)
 ![Twitter Follow](https://img.shields.io/twitter/follow/b__nova?style=social)
 
-gostapafor is a `tool` that allows `content maintainers` to
-do `expose and forward html pages to a set of other services`.
+**gostapafor is a tool that allows content maintainers to do expose and forward html pages to a set of other services.**
 
 More specifically, gostapafor is microservice written in Go that forwards html pages over a RESTful interface. It is
 operates on the principles of KISS and is best integrated in a JAMstack.
@@ -117,4 +116,3 @@ If you want to contact me you can reach me at [info@b-nova.com](info@b-nova.com)
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
 This project uses the following license: [MIT License](https://opensource.org/licenses/MIT)
-. https://opensource.org/licenses/MIT
