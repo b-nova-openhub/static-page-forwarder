@@ -1,25 +1,27 @@
-all: mod test vet fmt build run
+all: tidy build run
 
-test:
-	go test ./...
-
-vet:
-	go vet ./...
-
-fmt:
-	go list -f '{{.Dir}}' ./... | grep -v /vendor/ | xargs -L1 gofmt -l
-
-mod:
+init:
+	go mod download github.com/gorilla/mux
+	go mod download github.com/spf13/cobra
+	go fmt
 	go mod tidy
 	go mod vendor
+	mkdir bin
+	build
+	run
+
+tidy:
+	go mod tidy
+	go fmt ./...
 
 build:
-	go build -o bin/stapafor cmd/stapafor/main.go
+	go test ./...
+	go build -o bin/stapafor main.go
 
 run:
+	chmod +x bin/stapafor
 	chmod +x stapafor.sh
 	./stapafor.sh
 
 install:
-	mod
 	go install -v ./...
