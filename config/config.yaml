@@ -1,0 +1,10 @@
+# config file for stapafor app
+#############################
+
+# fully qualified target sitemap url
+# example: https://www.yourwebsite.com/sitemaps/sitemap.xml
+sitemap: "https://yourwebsite/sitemap"
+
+# port this web service is going to be served on. default port if none is being specified is 8080.
+# example: 8000
+port: "8080"
