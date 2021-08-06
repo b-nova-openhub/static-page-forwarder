@@ -2,7 +2,7 @@
 
 echo "$(<LICENSE)"
 
-APP_PORT=8080
-SITEMAP=https://b-nova.com/sitemaps/sitemap.xml
+SITEMAP=localhost:8000/sitemap
+PORT=8080
 
-./bin/stapafor --port=$APP_PORT --sitemap=$SITEMAP
+./bin/stapafor serve --sitemap=$SITEMAP --port=$PORT

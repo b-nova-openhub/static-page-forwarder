@@ -1,17 +1,16 @@
 package resolver
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/yterajima/go-sitemap"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
 )
 
 func GetContentHtml(url string) []string {
 	content := make([]string, 0, 0)
-	contentUrls := getValidContentUrls(url)
+	contentUrls := getResolvedUrls(url)
 	for _, url := range contentUrls {
 		get, getErr := http.Get(url)
 		if getErr != nil {
@@ -27,24 +26,19 @@ func GetContentHtml(url string) []string {
 	return content
 }
 
-func getValidContentUrls(url string) []string {
-	content := make([]string, 0, 0)
-	urls := parseSitemap(url).URL
-	for _, url := range urls {
-		if strings.Contains(url.Loc, "/content/") {
-			content = append(content, url.Loc)
-		}
+func getResolvedUrls(url string) []string {
+	get, getErr := http.Get(url)
+	if getErr != nil {
+		log.Fatal(getErr)
 	}
-	return content
-}
-
-func parseSitemap(url string) sitemap.Sitemap {
-	smap, err := sitemap.Get(url, nil)
-	if err != nil {
-		fmt.Println(err)
+	body, readErr := ioutil.ReadAll(get.Body)
+	if readErr != nil {
+		log.Fatal(readErr)
 	}
-	for _, URL := range smap.URL {
-		log.Println("Found following URL in sitemap.xml: ", URL.Loc)
+	var resolvedUrls []string
+	jsonErr := json.Unmarshal(body, &resolvedUrls)
+	if jsonErr != nil {
+		log.Fatal(jsonErr)
 	}
-	return smap
+	return resolvedUrls
 }

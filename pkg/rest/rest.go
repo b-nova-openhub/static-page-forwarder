@@ -1,12 +1,12 @@
 package rest
 
 import (
-	"b-nova-openhub/stapafor/pkg/config"
-	"b-nova-openhub/stapafor/pkg/forward"
-	"b-nova-openhub/stapafor/pkg/resolver"
 	"encoding/json"
 	"fmt"
+	"github.com/b-nova-openhub/stapafor/pkg/forward"
+	"github.com/b-nova-openhub/stapafor/pkg/resolver"
 	"github.com/gorilla/mux"
+	"github.com/spf13/viper"
 	"log"
 	"net/http"
 )
@@ -17,7 +17,7 @@ func HandleRequests() {
 	router.HandleFunc("/pages", getPages).Methods("GET")
 	router.HandleFunc("/status", getStatus).Methods("GET")
 	router.HandleFunc("/forward", getForward).Methods("GET")
-	log.Fatal(http.ListenAndServe(":"+config.AppConfig.AppPort, router))
+	log.Fatal(http.ListenAndServe(":"+viper.GetString("port"), router))
 }
 
 func getPage(w http.ResponseWriter, r *http.Request) {
@@ -41,7 +41,7 @@ func getStatus(w http.ResponseWriter, r *http.Request) {
 
 func getForward(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Forward Request: %+v\n", r)
-	forwarded := forward.Forward(resolver.GetContentHtml(config.AppConfig.TargetSitemapUrl))
+	forwarded := forward.Forward(resolver.GetContentHtml(viper.GetString("sitemap")))
 	fmt.Printf("Forward Response: %+v\n", forwarded)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(forwarded)
